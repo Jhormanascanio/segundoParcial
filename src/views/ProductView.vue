@@ -42,6 +42,11 @@
     </div>
 
     <!-- Grid de productos -->
+    <div class="alert alert-info mb-3">
+      <i class="bi bi-info-circle me-2"></i>
+      Mostrando {{ productosFiltrados.length }} de {{ productos.length }} productos
+    </div>
+    
     <div v-if="productosFiltrados.length > 0" class="row g-4">
       <div v-for="producto in productosFiltrados" :key="producto.id" class="col-md-4">
         <ProductCardComponent 
@@ -197,6 +202,7 @@ export default {
     async cargarProductos() {
       try {
         this.productos = await obtenerProductos();
+        console.log('Total productos cargados en componente:', this.productos.length);
       } catch (error) {
         console.error('Error al cargar productos:', error);
       }

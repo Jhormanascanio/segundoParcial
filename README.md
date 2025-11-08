@@ -177,37 +177,116 @@ Gestión completa de productos:
 - **Eliminar**: Confirmación antes de eliminar
 - **Ver Detalle**: Modal con información ampliada
 
-## 🌐 Consumo de API Externa (Simulada)
+## 🌐 Consumo de API Externa
+
+### Configuración Dual: Local / FakeStore API
+
+El proyecto está configurado para trabajar con **dos modos**:
+
+#### 1. **Modo Local** (Por defecto - `USE_LOCAL_API = true`)
+Utiliza el archivo `public/productos.json` con los 46 productos de la tienda Tropical Rebelde.
+
+#### 2. **Modo FakeStore API** (`USE_LOCAL_API = false`)
+Consume la API pública de FakeStore: https://fakestoreapi.com
+
+### Cambiar entre APIs
+
+Edita `src/services/api.js` y cambia la constante:
+
+```javascript
+const USE_LOCAL_API = true;  // true = JSON local, false = FakeStore API
+```
 
 ### Archivo: `src/services/api.js`
 
-El proyecto implementa un servicio de API que simula operaciones CRUD:
+El servicio implementa todas las operaciones CRUD con ambas APIs:
 
+#### **GET - Listar productos**
 ```javascript
-// Ejemplo de consumo desde ProductView.vue
-import { obtenerProductos, crearProducto, actualizarProducto, eliminarProducto } from '../services/api';
-
-// Listar productos
+// Local: GET /productos.json
+// FakeStore: GET https://fakestoreapi.com/products
 const productos = await obtenerProductos();
-
-// Crear producto
-const nuevo = await crearProducto({ nombre: 'Oversize', precio: 45000, ... });
-
-// Actualizar producto
-await actualizarProducto(id, { nombre: 'Oversize Editado', ... });
-
-// Eliminar producto
-await eliminarProducto(id);
 ```
 
-### Funcionamiento
+#### **POST - Crear producto**
+```javascript
+// Local: Simulado en caché
+// FakeStore: POST https://fakestoreapi.com/products
+const nuevo = await crearProducto({ 
+  nombre: 'Oversize Negro', 
+  precio: 45000,
+  categoria: 'Oversize',
+  genero: 'Hombre',
+  imagen: '/img/Hombre/oversize1.png',
+  descripcion: 'Camiseta oversize'
+});
+```
 
-1. **GET**: Lee `productos.json` con Axios y cachea en memoria
-2. **POST**: Agrega al caché (en producción sería POST a API real)
-3. **PUT**: Actualiza en caché (en producción sería PUT)
-4. **DELETE**: Elimina del caché (en producción sería DELETE)
+#### **PUT - Actualizar producto**
+```javascript
+// Local: Simulado en caché
+// FakeStore: PUT https://fakestoreapi.com/products/1
+await actualizarProducto(1, { 
+  nombre: 'Oversize Editado',
+  precio: 50000
+});
+```
 
-**NOTA**: En una aplicación real, estas funciones harían peticiones HTTP a un backend (ej: FakeStore API, MockAPI, JSON Server).
+#### **DELETE - Eliminar producto**
+```javascript
+// Local: Simulado en caché
+// FakeStore: DELETE https://fakestoreapi.com/products/1
+await eliminarProducto(1);
+```
+
+### Ejemplo de uso desde ProductView.vue
+
+```javascript
+import { 
+  obtenerProductos, 
+  crearProducto, 
+  actualizarProducto, 
+  eliminarProducto 
+} from '../services/api';
+
+export default {
+  methods: {
+    async cargarProductos() {
+      this.productos = await obtenerProductos();
+    },
+    async guardarProducto() {
+      if (this.modoEdicion) {
+        await actualizarProducto(this.productoForm.id, this.productoForm);
+      } else {
+        await crearProducto(this.productoForm);
+      }
+      await this.cargarProductos();
+    }
+  }
+}
+```
+
+### Notas Importantes
+
+**FakeStore API:**
+- ✅ Endpoints reales funcionando
+- ⚠️ Las operaciones POST, PUT, DELETE son **simuladas** (no persisten en el servidor)
+- ⚠️ Los datos devueltos tienen estructura diferente (title, price, category, image, description)
+- 📊 Retorna ~20 productos de ejemplo
+
+**API Local (productos.json):**
+- ✅ 46 productos específicos de Tropical Rebelde
+- ✅ Estructura personalizada (nombre, precio, categoria, genero, imagen, descripcion)
+- ✅ Imágenes locales disponibles
+- ⚠️ Cambios no persisten al recargar (solo en memoria durante la sesión)
+
+### En Producción
+
+Para un sistema real, deberías:
+1. Crear un backend con Node.js/Express o similar
+2. Usar una base de datos (MySQL, MongoDB, PostgreSQL)
+3. Implementar autenticación JWT
+4. Subir imágenes a un servidor o servicio cloud (Cloudinary, AWS S3)
 
 ## 🎨 Diseño y Estilos
 
@@ -321,7 +400,9 @@ Cada producto contiene:
 }
 ```
 
-**Total de productos**: 27 (9 Hombre Ropa + 8 Tenis Hombre + 9 Mujer Ropa + 1 Tenis Mujer)  
+**Total de productos**: 46 productos completos
+- **Hombre**: 10 Oversize + 10 Pantalones + 10 Sacos + 8 Tenis = 38 productos
+- **Mujer**: 9 Oversize + 9 Pantalones + 10 Sacos + 1 Tenis = 29 productos  
 **Categorías**: Oversize, Pantalón, Saco, Tenis
 
 ### Usuarios (usuarios.json)

@@ -28,6 +28,69 @@
   },
   {
     "id": 4,
+    "nombre": "Oversize Deportivo Azul",
+    "categoria": "Oversize",
+    "genero": "Hombre",
+    "precio": 46000,
+    "imagen": "/img/Hombre/oversize4.png",
+    "descripcion": "Perfecto para el gym y actividades deportivas"
+  },
+  {
+    "id": 5,
+    "nombre": "Oversize Premium Negro",
+    "categoria": "Oversize",
+    "genero": "Hombre",
+    "precio": 52000,
+    "imagen": "/img/Hombre/oversize5.png",
+    "descripcion": "Calidad premium para uso diario"
+  },
+  {
+    "id": 6,
+    "nombre": "Oversize Street Verde",
+    "categoria": "Oversize",
+    "genero": "Hombre",
+    "precio": 49000,
+    "imagen": "/img/Hombre/oversize6.png",
+    "descripcion": "Estilo streetwear urbano"
+  },
+  {
+    "id": 7,
+    "nombre": "Oversize Casual Beige",
+    "categoria": "Oversize",
+    "genero": "Hombre",
+    "precio": 47000,
+    "imagen": "/img/Hombre/oversize7.png",
+    "descripcion": "Tono neutro versátil"
+  },
+  {
+    "id": 8,
+    "nombre": "Oversize Fashion Rojo",
+    "categoria": "Oversize",
+    "genero": "Hombre",
+    "precio": 50000,
+    "imagen": "/img/Hombre/oversize8.png",
+    "descripcion": "Color llamativo y moderno"
+  },
+  {
+    "id": 9,
+    "nombre": "Oversize Vintage Marrón",
+    "categoria": "Oversize",
+    "genero": "Hombre",
+    "precio": 48000,
+    "imagen": "/img/Hombre/oversize9.png",
+    "descripcion": "Estilo retro y cómodo"
+  },
+  {
+    "id": 10,
+    "nombre": "Oversize Summer Rosa",
+    "categoria": "Oversize",
+    "genero": "Hombre",
+    "precio": 46000,
+    "imagen": "/img/Hombre/oversize10.png",
+    "descripcion": "Fresco y ligero para verano"
+  },
+  {
+    "id": 11,
     "nombre": "Pantalón Jean Clásico",
     "categoria": "Pantalon",
     "genero": "Hombre",
@@ -36,7 +99,7 @@
     "descripcion": "Jean de mezclilla resistente"
   },
   {
-    "id": 5,
+    "id": 12,
     "nombre": "Pantalón Cargo Negro",
     "categoria": "Pantalon",
     "genero": "Hombre",
@@ -45,7 +108,7 @@
     "descripcion": "Pantalón cargo con múltiples bolsillos"
   },
   {
-    "id": 6,
+    "id": 13,
     "nombre": "Pantalón Formal Azul",
     "categoria": "Pantalon",
     "genero": "Hombre",
@@ -54,7 +117,70 @@
     "descripcion": "Elegante para ocasiones formales"
   },
   {
-    "id": 7,
+    "id": 14,
+    "nombre": "Pantalón Chino Beige",
+    "categoria": "Pantalon",
+    "genero": "Hombre",
+    "precio": 92000,
+    "imagen": "/img/Hombre/pantalon4.png",
+    "descripcion": "Estilo casual elegante"
+  },
+  {
+    "id": 15,
+    "nombre": "Pantalón Deportivo Gris",
+    "categoria": "Pantalon",
+    "genero": "Hombre",
+    "precio": 78000,
+    "imagen": "/img/Hombre/pantalon5.png",
+    "descripcion": "Cómodo para entrenar"
+  },
+  {
+    "id": 16,
+    "nombre": "Pantalón Jean Negro",
+    "categoria": "Pantalon",
+    "genero": "Hombre",
+    "precio": 88000,
+    "imagen": "/img/Hombre/pantalon6.png",
+    "descripcion": "Versátil y moderno"
+  },
+  {
+    "id": 17,
+    "nombre": "Pantalón Cargo Verde",
+    "categoria": "Pantalon",
+    "genero": "Hombre",
+    "precio": 98000,
+    "imagen": "/img/Hombre/pantalon7.png",
+    "descripcion": "Estilo militar moderno"
+  },
+  {
+    "id": 18,
+    "nombre": "Pantalón Slim Fit Azul",
+    "categoria": "Pantalon",
+    "genero": "Hombre",
+    "precio": 105000,
+    "imagen": "/img/Hombre/pantalon8.png",
+    "descripcion": "Corte ajustado elegante"
+  },
+  {
+    "id": 19,
+    "nombre": "Pantalón Jogger Negro",
+    "categoria": "Pantalon",
+    "genero": "Hombre",
+    "precio": 82000,
+    "imagen": "/img/Hombre/pantalon9.png",
+    "descripcion": "Urbano y cómodo"
+  },
+  {
+    "id": 20,
+    "nombre": "Pantalón Formal Café",
+    "categoria": "Pantalon",
+    "genero": "Hombre",
+    "precio": 112000,
+    "imagen": "/img/Hombre/pantalon10.png",
+    "descripcion": "Sofisticado para oficina"
+  },
+  {
+    "id": 21,
     "nombre": "Saco Deportivo Rojo",
     "categoria": "Saco",
     "genero": "Hombre",
@@ -63,7 +189,7 @@
     "descripcion": "Saco deportivo cómodo"
   },
   {
-    "id": 8,
+    "id": 22,
     "nombre": "Saco Cuero Negro",
     "categoria": "Saco",
     "genero": "Hombre",
@@ -72,13 +198,76 @@
     "descripcion": "Saco de cuero sintético"
   },
   {
-    "id": 9,
+    "id": 23,
     "nombre": "Saco Casual Beige",
     "categoria": "Saco",
     "genero": "Hombre",
     "precio": 135000,
     "imagen": "/img/Hombre/saco3.png",
     "descripcion": "Perfecto para el día a día"
+  },
+  {
+    "id": 24,
+    "nombre": "Saco Bomber Azul",
+    "categoria": "Saco",
+    "genero": "Hombre",
+    "precio": 145000,
+    "imagen": "/img/Hombre/saco4.png",
+    "descripcion": "Estilo bomber moderno"
+  },
+  {
+    "id": 25,
+    "nombre": "Saco Jean Clásico",
+    "categoria": "Saco",
+    "genero": "Hombre",
+    "precio": 130000,
+    "imagen": "/img/Hombre/saco5.png",
+    "descripcion": "Mezclilla versátil"
+  },
+  {
+    "id": 26,
+    "nombre": "Saco Impermeable Verde",
+    "categoria": "Saco",
+    "genero": "Hombre",
+    "precio": 155000,
+    "imagen": "/img/Hombre/saco6.png",
+    "descripcion": "Protección contra lluvia"
+  },
+  {
+    "id": 27,
+    "nombre": "Saco Formal Negro",
+    "categoria": "Saco",
+    "genero": "Hombre",
+    "precio": 195000,
+    "imagen": "/img/Hombre/saco7.png",
+    "descripcion": "Elegante para eventos"
+  },
+  {
+    "id": 28,
+    "nombre": "Saco Parka Café",
+    "categoria": "Saco",
+    "genero": "Hombre",
+    "precio": 165000,
+    "imagen": "/img/Hombre/saco8.png",
+    "descripcion": "Abrigado y moderno"
+  },
+  {
+    "id": 29,
+    "nombre": "Saco Windbreaker Gris",
+    "categoria": "Saco",
+    "genero": "Hombre",
+    "precio": 125000,
+    "imagen": "/img/Hombre/saco9.png",
+    "descripcion": "Ligero y práctico"
+  },
+  {
+    "id": 30,
+    "nombre": "Saco Hoodie Negro",
+    "categoria": "Saco",
+    "genero": "Hombre",
+    "precio": 115000,
+    "imagen": "/img/Hombre/saco10.png",
+    "descripcion": "Casual con capucha"
   },
   {
     "id": 10,
@@ -181,6 +370,60 @@
   },
   {
     "id": 21,
+    "nombre": "Oversize Lila Mujer",
+    "categoria": "Oversize",
+    "genero": "Mujer",
+    "precio": 43000,
+    "imagen": "/img/Mujer/oversize4.png",
+    "descripcion": "Color suave y femenino"
+  },
+  {
+    "id": 22,
+    "nombre": "Oversize Gris Mujer",
+    "categoria": "Oversize",
+    "genero": "Mujer",
+    "precio": 45000,
+    "imagen": "/img/Mujer/oversize5.png",
+    "descripcion": "Neutro y versátil"
+  },
+  {
+    "id": 23,
+    "nombre": "Oversize Negro Mujer",
+    "categoria": "Oversize",
+    "genero": "Mujer",
+    "precio": 46000,
+    "imagen": "/img/Mujer/oversize6.png",
+    "descripcion": "Clásico en negro"
+  },
+  {
+    "id": 24,
+    "nombre": "Oversize Coral Mujer",
+    "categoria": "Oversize",
+    "genero": "Mujer",
+    "precio": 44000,
+    "imagen": "/img/Mujer/oversize7.png",
+    "descripcion": "Vibrante y alegre"
+  },
+  {
+    "id": 25,
+    "nombre": "Oversize Azul Cielo",
+    "categoria": "Oversize",
+    "genero": "Mujer",
+    "precio": 43000,
+    "imagen": "/img/Mujer/oversize8.png",
+    "descripcion": "Fresco y luminoso"
+  },
+  {
+    "id": 26,
+    "nombre": "Oversize Beige Mujer",
+    "categoria": "Oversize",
+    "genero": "Mujer",
+    "precio": 45000,
+    "imagen": "/img/Mujer/oversize9.png",
+    "descripcion": "Tono tierra elegante"
+  },
+  {
+    "id": 27,
     "nombre": "Pantalón Jean Ajustado",
     "categoria": "Pantalon",
     "genero": "Mujer",
@@ -189,7 +432,7 @@
     "descripcion": "Corte moderno ajustado"
   },
   {
-    "id": 22,
+    "id": 28,
     "nombre": "Pantalón Negro Elegante",
     "categoria": "Pantalon",
     "genero": "Mujer",
@@ -198,7 +441,7 @@
     "descripcion": "Ideal para el trabajo"
   },
   {
-    "id": 23,
+    "id": 29,
     "nombre": "Pantalón Casual Mujer",
     "categoria": "Pantalon",
     "genero": "Mujer",
@@ -207,7 +450,61 @@
     "descripcion": "Cómodo y versátil"
   },
   {
-    "id": 24,
+    "id": 30,
+    "nombre": "Pantalón Wide Leg Azul",
+    "categoria": "Pantalon",
+    "genero": "Mujer",
+    "precio": 92000,
+    "imagen": "/img/Mujer/pantalon4.png",
+    "descripcion": "Pierna ancha moderna"
+  },
+  {
+    "id": 31,
+    "nombre": "Pantalón Palazzo Beige",
+    "categoria": "Pantalon",
+    "genero": "Mujer",
+    "precio": 98000,
+    "imagen": "/img/Mujer/pantalon5.png",
+    "descripcion": "Elegante y fluido"
+  },
+  {
+    "id": 32,
+    "nombre": "Pantalón Skinny Gris",
+    "categoria": "Pantalon",
+    "genero": "Mujer",
+    "precio": 86000,
+    "imagen": "/img/Mujer/pantalon6.png",
+    "descripcion": "Ajuste perfecto"
+  },
+  {
+    "id": 33,
+    "nombre": "Pantalón Cargo Mujer Verde",
+    "categoria": "Pantalon",
+    "genero": "Mujer",
+    "precio": 94000,
+    "imagen": "/img/Mujer/pantalon7.png",
+    "descripcion": "Funcional y trendy"
+  },
+  {
+    "id": 34,
+    "nombre": "Pantalón Formal Café",
+    "categoria": "Pantalon",
+    "genero": "Mujer",
+    "precio": 105000,
+    "imagen": "/img/Mujer/pantalon8.png",
+    "descripcion": "Sofisticado para oficina"
+  },
+  {
+    "id": 35,
+    "nombre": "Pantalón Jogger Mujer",
+    "categoria": "Pantalon",
+    "genero": "Mujer",
+    "precio": 82000,
+    "imagen": "/img/Mujer/pantalon9.png",
+    "descripcion": "Deportivo y cómodo"
+  },
+  {
+    "id": 36,
     "nombre": "Saco Denim Mujer",
     "categoria": "Saco",
     "genero": "Mujer",
@@ -216,7 +513,7 @@
     "descripcion": "Chaqueta de mezclilla clásica"
   },
   {
-    "id": 25,
+    "id": 37,
     "nombre": "Saco Bomber Rosa",
     "categoria": "Saco",
     "genero": "Mujer",
@@ -225,7 +522,7 @@
     "descripcion": "Estilo bomber moderno"
   },
   {
-    "id": 26,
+    "id": 38,
     "nombre": "Saco Largo Gris",
     "categoria": "Saco",
     "genero": "Mujer",
@@ -234,7 +531,70 @@
     "descripcion": "Elegante y sofisticado"
   },
   {
-    "id": 27,
+    "id": 39,
+    "nombre": "Saco Blazer Negro",
+    "categoria": "Saco",
+    "genero": "Mujer",
+    "precio": 155000,
+    "imagen": "/img/Mujer/saco4.png",
+    "descripcion": "Formal y profesional"
+  },
+  {
+    "id": 40,
+    "nombre": "Saco Cuero Café",
+    "categoria": "Saco",
+    "genero": "Mujer",
+    "precio": 175000,
+    "imagen": "/img/Mujer/saco5.png",
+    "descripcion": "Cuero sintético premium"
+  },
+  {
+    "id": 41,
+    "nombre": "Saco Puffer Azul",
+    "categoria": "Saco",
+    "genero": "Mujer",
+    "precio": 140000,
+    "imagen": "/img/Mujer/saco6.png",
+    "descripcion": "Acolchado y abrigado"
+  },
+  {
+    "id": 42,
+    "nombre": "Saco Kimono Estampado",
+    "categoria": "Saco",
+    "genero": "Mujer",
+    "precio": 130000,
+    "imagen": "/img/Mujer/saco7.png",
+    "descripcion": "Estilo bohemio"
+  },
+  {
+    "id": 43,
+    "nombre": "Saco Trench Beige",
+    "categoria": "Saco",
+    "genero": "Mujer",
+    "precio": 185000,
+    "imagen": "/img/Mujer/saco8.png",
+    "descripcion": "Clásico y elegante"
+  },
+  {
+    "id": 44,
+    "nombre": "Saco Cardigan Blanco",
+    "categoria": "Saco",
+    "genero": "Mujer",
+    "precio": 120000,
+    "imagen": "/img/Mujer/saco9.png",
+    "descripcion": "Suave y ligero"
+  },
+  {
+    "id": 45,
+    "nombre": "Saco Hoodie Rosa",
+    "categoria": "Saco",
+    "genero": "Mujer",
+    "precio": 115000,
+    "imagen": "/img/Mujer/saco10.png",
+    "descripcion": "Casual con capucha"
+  },
+  {
+    "id": 46,
     "nombre": "Tenis Fashion Mujer",
     "categoria": "Tenis",
     "genero": "Mujer",

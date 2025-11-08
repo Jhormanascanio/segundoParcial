@@ -82,6 +82,78 @@
   },
   {
     "id": 10,
+    "nombre": "Tenis Deportivo Blanco",
+    "categoria": "Tenis",
+    "genero": "Hombre",
+    "precio": 150000,
+    "imagen": "/img/tenishombre1.png",
+    "descripcion": "Tenis deportivos de alta calidad"
+  },
+  {
+    "id": 11,
+    "nombre": "Tenis Running Negro",
+    "categoria": "Tenis",
+    "genero": "Hombre",
+    "precio": 165000,
+    "imagen": "/img/tenishombre2.png",
+    "descripcion": "Ideales para correr y entrenar"
+  },
+  {
+    "id": 12,
+    "nombre": "Tenis Casual Gris",
+    "categoria": "Tenis",
+    "genero": "Hombre",
+    "precio": 140000,
+    "imagen": "/img/tenishombre3.png",
+    "descripcion": "Comodidad para uso diario"
+  },
+  {
+    "id": 13,
+    "nombre": "Tenis Urbano Azul",
+    "categoria": "Tenis",
+    "genero": "Hombre",
+    "precio": 155000,
+    "imagen": "/img/tenishombre4.png",
+    "descripcion": "Estilo urbano moderno"
+  },
+  {
+    "id": 14,
+    "nombre": "Tenis Sport Rojo",
+    "categoria": "Tenis",
+    "genero": "Hombre",
+    "precio": 170000,
+    "imagen": "/img/tenishombre5.png",
+    "descripcion": "Para actividades deportivas"
+  },
+  {
+    "id": 15,
+    "nombre": "Tenis Clásico Blanco/Negro",
+    "categoria": "Tenis",
+    "genero": "Hombre",
+    "precio": 145000,
+    "imagen": "/img/tenishombre6.png",
+    "descripcion": "Diseño clásico atemporal"
+  },
+  {
+    "id": 16,
+    "nombre": "Tenis Premium Negro",
+    "categoria": "Tenis",
+    "genero": "Hombre",
+    "precio": 180000,
+    "imagen": "/img/tenishombre7.png",
+    "descripcion": "Máxima comodidad y estilo"
+  },
+  {
+    "id": 17,
+    "nombre": "Tenis Lifestyle Multicolor",
+    "categoria": "Tenis",
+    "genero": "Hombre",
+    "precio": 160000,
+    "imagen": "/img/tenishombre8.png",
+    "descripcion": "Colores vibrantes y modernos"
+  },
+  {
+    "id": 18,
     "nombre": "Oversize Rosa Pastel",
     "categoria": "Oversize",
     "genero": "Mujer",
@@ -90,7 +162,7 @@
     "descripcion": "Suave y cómodo para cualquier ocasión"
   },
   {
-    "id": 11,
+    "id": 19,
     "nombre": "Oversize Blanco Mujer",
     "categoria": "Oversize",
     "genero": "Mujer",
@@ -99,7 +171,7 @@
     "descripcion": "Diseño minimalista"
   },
   {
-    "id": 12,
+    "id": 20,
     "nombre": "Oversize Estampado",
     "categoria": "Oversize",
     "genero": "Mujer",
@@ -108,7 +180,7 @@
     "descripcion": "Con estampado único"
   },
   {
-    "id": 13,
+    "id": 21,
     "nombre": "Pantalón Jean Ajustado",
     "categoria": "Pantalon",
     "genero": "Mujer",
@@ -117,7 +189,7 @@
     "descripcion": "Corte moderno ajustado"
   },
   {
-    "id": 14,
+    "id": 22,
     "nombre": "Pantalón Negro Elegante",
     "categoria": "Pantalon",
     "genero": "Mujer",
@@ -126,7 +198,7 @@
     "descripcion": "Ideal para el trabajo"
   },
   {
-    "id": 15,
+    "id": 23,
     "nombre": "Pantalón Casual Mujer",
     "categoria": "Pantalon",
     "genero": "Mujer",
@@ -135,7 +207,7 @@
     "descripcion": "Cómodo y versátil"
   },
   {
-    "id": 16,
+    "id": 24,
     "nombre": "Saco Denim Mujer",
     "categoria": "Saco",
     "genero": "Mujer",
@@ -144,7 +216,7 @@
     "descripcion": "Chaqueta de mezclilla clásica"
   },
   {
-    "id": 17,
+    "id": 25,
     "nombre": "Saco Bomber Rosa",
     "categoria": "Saco",
     "genero": "Mujer",
@@ -153,12 +225,21 @@
     "descripcion": "Estilo bomber moderno"
   },
   {
-    "id": 18,
+    "id": 26,
     "nombre": "Saco Largo Gris",
     "categoria": "Saco",
     "genero": "Mujer",
     "precio": 160000,
     "imagen": "/img/Mujer/saco3.png",
     "descripcion": "Elegante y sofisticado"
+  },
+  {
+    "id": 27,
+    "nombre": "Tenis Fashion Mujer",
+    "categoria": "Tenis",
+    "genero": "Mujer",
+    "precio": 155000,
+    "imagen": "/img/tenismujer9.png",
+    "descripcion": "Tenis modernos y cómodos para mujer"
   }
 ]

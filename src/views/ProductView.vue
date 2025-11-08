@@ -22,6 +22,7 @@
               <option value="Oversize">Oversize</option>
               <option value="Pantalon">Pantalón</option>
               <option value="Saco">Saco</option>
+              <option value="Tenis">Tenis</option>
             </select>
           </div>
           <div class="col-md-4">
@@ -84,6 +85,7 @@
                     <option value="Oversize">Oversize</option>
                     <option value="Pantalon">Pantalón</option>
                     <option value="Saco">Saco</option>
+                    <option value="Tenis">Tenis</option>
                   </select>
                 </div>
                 <div class="col-md-6">

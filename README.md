@@ -9,7 +9,7 @@
 
 ## 📋 Descripción del Proyecto
 
-Fashion Store es una aplicación web moderna para la gestión de productos de una tienda de ropa. El sistema permite administrar un inventario de prendas organizadas por categorías (Oversize, Pantalones, Sacos) y géneros (Hombre, Mujer), con un sistema de autenticación básico y una interfaz responsiva construida con Bootstrap 5.3.
+Tropical Rebelde es una aplicación web moderna para la gestión de productos de una tienda de ropa. El sistema permite administrar un inventario de prendas organizadas por categorías (Oversize, Pantalones, Sacos, Tenis) y géneros (Hombre, Mujer), con un sistema de autenticación básico y una interfaz responsiva construida con Bootstrap 5.3.
 
 ### 🎯 Tipo de Negocio
 
@@ -17,6 +17,7 @@ Tienda de ropa que ofrece productos para hombre y mujer en las siguientes catego
 - **Oversize**: Camisetas y prendas de corte holgado
 - **Pantalones**: Jeans, cargo, formales y casuales
 - **Sacos**: Chaquetas deportivas, de cuero y casuales
+- **Tenis**: Calzado deportivo y casual
 
 ## 🏗️ Estructura del Proyecto
 
@@ -30,10 +31,12 @@ segundoParicial/
 │   │   ├── oversize1-10.png
 │   │   ├── pantalon1-10.png
 │   │   └── saco1-10.png
-│   └── Mujer/                # Imágenes de productos femeninos
-│       ├── oversize1-9.png
-│       ├── pantalon1-9.png
-│       └── saco1-10.png
+│   ├── Mujer/                # Imágenes de productos femeninos
+│   │   ├── oversize1-9.png
+│   │   ├── pantalon1-9.png
+│   │   └── saco1-10.png
+│   └── tenishombre1-8.png    # Imágenes de tenis
+│   └── tenismujer9.png
 ├── src/
 │   ├── components/           # Componentes reutilizables
 │   │   ├── NavbarComponent.vue
@@ -303,7 +306,7 @@ router.beforeEach((to, from, next) => {
 
 ## 📦 Gestión de Datos
 
-### Productos (productos.json)
+### Datos (productos.json)
 
 Cada producto contiene:
 ```json
@@ -317,6 +320,9 @@ Cada producto contiene:
   "descripcion": "Camiseta oversize de algodón 100%"
 }
 ```
+
+**Total de productos**: 27 (9 Hombre Ropa + 8 Tenis Hombre + 9 Mujer Ropa + 1 Tenis Mujer)  
+**Categorías**: Oversize, Pantalón, Saco, Tenis
 
 ### Usuarios (usuarios.json)
 

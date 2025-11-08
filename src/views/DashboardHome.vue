@@ -26,7 +26,7 @@
             <div class="d-flex justify-content-between align-items-center">
               <div>
                 <h6 class="card-title text-uppercase">Categorías</h6>
-                <h2 class="fw-bold">3</h2>
+                <h2 class="fw-bold">4</h2>
               </div>
               <i class="bi bi-tags-fill fs-1"></i>
             </div>

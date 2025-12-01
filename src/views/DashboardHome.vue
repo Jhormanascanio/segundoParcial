@@ -28,10 +28,10 @@
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
               <div>
-                <h6 class="card-title text-uppercase">Categorías</h6>
-                <h2 class="fw-bold">4</h2>
+                <h6 class="card-title text-uppercase">Total Usuarios</h6>
+                <h2 class="fw-bold">{{ totalUsuarios }}</h2>
               </div>
-              <i class="bi bi-tags-fill fs-1"></i>
+              <i class="bi bi-people-fill fs-1"></i>
             </div>
           </div>
         </div>
@@ -45,7 +45,7 @@
                 <h6 class="card-title text-uppercase">Géneros</h6>
                 <h2 class="fw-bold">2</h2>
               </div>
-              <i class="bi bi-people-fill fs-1"></i>
+              <i class="bi bi-person-badge-fill fs-1"></i>
             </div>
           </div>
         </div>
@@ -68,8 +68,14 @@
             </p>
             <ul>
               <li><strong>Productos:</strong> Gestiona el inventario de ropa (Crear, Editar, Eliminar)</li>
-              <li><strong>Clientes:</strong> Administra la información de clientes</li>
+              <li><strong>Usuarios:</strong> Administra la información de los usuarios del sistema (Crear, Editar, Eliminar)</li>
+              <li><strong>Clientes:</strong> Administra la información de clientes (Próximamente)</li>
             </ul>
+            <hr>
+            <p class="mb-0 text-muted">
+              <i class="bi bi-info-circle me-2"></i>
+              Desarrollado por: Harol Camilo Melo Torrado & Jhorman Esneider Ascanio Tarazona
+            </p>
           </div>
         </div>
       </div>
@@ -78,21 +84,31 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { obtenerProductos, obtenerUsuarios } from '../services/mockapi';
 
 export default {
   name: 'DashboardHome',
   data() {
     return {
-      totalProductos: 0
+      totalProductos: 0,
+      totalUsuarios: 0
     };
   },
   async mounted() {
     try {
-      const response = await axios.get('/productos.json');
-      this.totalProductos = response.data.length;
+      // Cargar total de productos desde MockAPI
+      const productos = await obtenerProductos();
+      this.totalProductos = productos.length || 0;
+      
+      // Cargar total de usuarios desde MockAPI
+      const usuarios = await obtenerUsuarios();
+      this.totalUsuarios = usuarios.length || 0;
+      
+      console.log('📊 Dashboard actualizado - Productos:', this.totalProductos, 'Usuarios:', this.totalUsuarios);
     } catch (error) {
-      console.error('Error al cargar productos:', error);
+      console.error('❌ Error al cargar datos del dashboard:', error);
+      this.totalProductos = 0;
+      this.totalUsuarios = 0;
     }
   }
 }
@@ -103,5 +119,14 @@ export default {
   height: 50px;
   width: auto;
   object-fit: contain;
+}
+
+.card {
+  border: none;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
 }
 </style>

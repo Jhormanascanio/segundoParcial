@@ -1,496 +1,309 @@
-# 🛍️ Fashion Store - Tienda de Ropa
+# Tropical Rebelde - Sistema de Gestión
 
-**Aplicación Web Modularizada con Vue.js 3 y Bootstrap 5.3**
+> **Oversize que rompe reglas**
 
-## 👥 Equipo de Desarrollo
+![Tropical Rebelde](public/imagen.png)
+
+## 📋 Información del Proyecto
+
+**Asignatura**: Construcción de una Aplicación Web Modularizada con Vue.js y Bootstrap 5.3  
+**Evaluación**: Examen Final (Segundo Parcial)  
+**Fecha de Entrega**: 15 días desde el inicio del examen
+
+### 👥 Integrantes
 
 - **Harol Camilo Melo Torrado** - Código: 192471
 - **Jhorman Esneider Ascanio Tarazona** - Código: 192534
 
-## 📋 Descripción del Proyecto
+## 🎯 Descripción del Proyecto
 
-Tropical Rebelde es una aplicación web moderna para la gestión de productos de una tienda de ropa. El sistema permite administrar un inventario de prendas organizadas por categorías (Oversize, Pantalones, Sacos, Tenis) y géneros (Hombre, Mujer), con un sistema de autenticación básico y una interfaz responsiva construida con Bootstrap 5.3.
+Sistema web completo para la gestión de una tienda de ropa "Tropical Rebelde", que incluye:
 
-### 🎯 Tipo de Negocio
+- ✅ Gestión de Productos (CRUD completo)
+- ✅ Gestión de Usuarios (CRUD completo)
+- ✅ Sistema de Autenticación con MockAPI
+- ✅ Modales Bootstrap para todas las operaciones
+- ✅ Alertas de feedback al usuario
+- ✅ Rutas protegidas con Navigation Guards
+- ✅ Integración con MockAPI como base de datos externa
 
-Tienda de ropa que ofrece productos para hombre y mujer en las siguientes categorías:
-- **Oversize**: Camisetas y prendas de corte holgado
-- **Pantalones**: Jeans, cargo, formales y casuales
-- **Sacos**: Chaquetas deportivas, de cuero y casuales
-- **Tenis**: Calzado deportivo y casual
+## 🛠️ Tecnologías Utilizadas
 
-## 🏗️ Estructura del Proyecto
+### Frontend
+
+- **Vue.js 3.3.4**: Framework JavaScript progresivo
+- **Vue Router 4.2.5**: Enrutamiento y navegación
+- **Bootstrap 5.3.2**: Framework CSS para diseño responsive
+- **Bootstrap Icons**: Iconografía
+- **Axios 1.6.0**: Cliente HTTP para APIs
+- **Vite 4.5.0**: Build tool y dev server
+
+### Backend
+
+- **MockAPI**: Base de datos externa RESTful
+- **API Base URL**: `https://691d0009d58e64bf0d34aae5.mockapi.io/api/v1/`
+
+## 📁 Estructura del Proyecto
 
 ```
-segundoParicial/
+segundoParical/
 ├── public/
-│   ├── usuarios.json          # Base de datos local de usuarios
-│   └── productos.json         # Base de datos local de productos
-├── img/
-│   ├── Hombre/               # Imágenes de productos masculinos
-│   │   ├── oversize1-10.png
-│   │   ├── pantalon1-10.png
-│   │   └── saco1-10.png
-│   ├── Mujer/                # Imágenes de productos femeninos
-│   │   ├── oversize1-9.png
-│   │   ├── pantalon1-9.png
-│   │   └── saco1-10.png
-│   └── tenishombre1-8.png    # Imágenes de tenis
-│   └── tenismujer9.png
+│   ├── img/
+│   │   ├── Hombre/          # Imágenes productos masculinos
+│   │   └── Mujer/           # Imágenes productos femeninos
+│   ├── imagen.png           # Logo Tropical Rebelde
+│   ├── productos.json       # Datos locales de productos
+│   └── usuarios.json        # Datos locales de usuarios
+├── scripts/
+│   ├── crear-usuarios-iniciales.js   # Script migración usuarios
+│   └── migrar-productos.js           # Script migración productos
 ├── src/
-│   ├── components/           # Componentes reutilizables
-│   │   ├── NavbarComponent.vue
-│   │   ├── SidebarComponent.vue
+│   ├── components/
 │   │   ├── FooterComponent.vue
-│   │   └── ProductCardComponent.vue
-│   ├── views/                # Vistas principales
-│   │   ├── LoginView.vue
-│   │   ├── DashboardView.vue
+│   │   ├── NavbarComponent.vue
+│   │   ├── ProductCardComponent.vue
+│   │   └── SidebarComponent.vue
+│   ├── views/
+│   │   ├── ClientesView.vue
 │   │   ├── DashboardHome.vue
+│   │   ├── DashboardView.vue
+│   │   ├── LoginView.vue
 │   │   ├── ProductView.vue
-│   │   └── ClientesView.vue
-│   ├── router/               # Configuración de rutas
-│   │   └── index.js
-│   ├── services/             # Servicios de API
-│   │   └── api.js
-│   ├── App.vue               # Componente raíz
-│   └── main.js               # Punto de entrada
-├── index.html
+│   │   └── UsuariosView.vue
+│   ├── services/
+│   │   └── mockapi.js       # Servicio API MockAPI
+│   ├── router/
+│   │   └── index.js         # Configuración rutas
+│   ├── App.vue
+│   └── main.js
+├── INSTRUCCIONES_MOCKAPI.md
+├── guia.txt                 # Requerimientos del examen
 ├── package.json
 ├── vite.config.js
 └── README.md
 ```
 
-## 🔧 Tecnologías Utilizadas
+## 🚀 Instalación y Configuración
 
-- **Vue.js 3**: Framework progresivo de JavaScript
-- **Vue Router 4**: Sistema de enrutamiento oficial de Vue
-- **Bootstrap 5.3**: Framework CSS para diseño responsivo
-- **Bootstrap Icons**: Iconografía
-- **Axios**: Cliente HTTP para peticiones
-- **Vite**: Build tool y servidor de desarrollo
+### 1. Clonar el Repositorio
 
-## 🚀 Instalación y Ejecución
-
-### Prerrequisitos
-
-- Node.js (versión 16 o superior)
-- npm o yarn
-
-### Pasos de instalación
-
-1. **Clonar el repositorio**
 ```bash
-git clone https://github.com/HarolTorrado73/segundoParcial.git
-cd segundoParcial
+git clone <url-repositorio>
+cd segundoParical
 ```
 
-2. **Instalar dependencias**
+### 2. Instalar Dependencias
+
 ```bash
 npm install
 ```
 
-3. **Ejecutar el servidor de desarrollo**
+### 3. Configurar MockAPI
+
+**Importante**: Antes de ejecutar la aplicación, debes configurar MockAPI siguiendo las instrucciones detalladas en [INSTRUCCIONES_MOCKAPI.md](INSTRUCCIONES_MOCKAPI.md).
+
+Resumen de pasos:
+
+1. Acceder a https://mockapi.io/
+2. Crear recurso "users" con schema de usuarios
+3. Verificar recurso "products" existe
+4. Ejecutar scripts de migración
+
+### 4. Migrar Datos a MockAPI
+
+```bash
+# Crear usuarios iniciales
+node scripts/crear-usuarios-iniciales.js
+
+# Migrar productos
+node scripts/migrar-productos.js
+```
+
+### 5. Iniciar Servidor de Desarrollo
+
 ```bash
 npm run dev
 ```
 
-4. **Abrir en el navegador**
-```
-http://localhost:3000
-```
+La aplicación estará disponible en: http://localhost:3000
 
-## 🔐 Sistema de Autenticación
+## 👤 Usuarios Iniciales
 
-### Usuarios de Prueba
+Después de ejecutar el script de migración, estos usuarios estarán disponibles:
 
-El sistema utiliza validación local desde `public/usuarios.json`. **NOTA IMPORTANTE**: Este es un sistema educativo y NO representa autenticación real en producción.
+| Usuario | Contraseña | Rol           |
+| ------- | ---------- | ------------- |
+| admin   | admin123   | Administrador |
+| harol   | harol123   | Administrador |
+| jhorman | jhorman123 | Empleado      |
 
-| Usuario | Contraseña | Nombre |
-|---------|-----------|--------|
-| admin | admin123 | Administrador |
-| harol | harol123 | Harol Camilo Melo Torrado |
-| jhorman | jhorman123 | Jhorman Esneider Ascanio Tarazona |
+## 📦 Catálogo de Productos
 
-### Flujo de Autenticación
+El sistema incluye **46 productos** distribuidos en:
 
-1. Usuario ingresa credenciales en `LoginView`
-2. Se valida contra `usuarios.json` usando Axios
-3. Si es correcto, se guarda en `localStorage` y redirige a `/dashboard`
-4. Si es incorrecto, se muestra alerta de Bootstrap con el error
+### Hombre (38 productos)
 
-## 🧩 Modularización y Componentes
+- 10 Oversize
+- 10 Pantalones
+- 10 Sacos
+- 8 Tenis
 
-### Componentes Reutilizables
+### Mujer (29 productos)
 
-#### 1. NavbarComponent.vue
-- **Props**: `usuario` (String), `showLogout` (Boolean)
-- **Eventos**: `@logout` - emitido al cerrar sesión
-- **Funcionalidad**: Barra de navegación superior con logo, nombre de usuario y botón de salida
+- 9 Oversize
+- 9 Pantalones
+- 10 Sacos
+- 1 Tenis
 
-#### 2. SidebarComponent.vue
-- **Props**: Ninguna
-- **Funcionalidad**: Menú lateral persistente con enlaces a Dashboard, Productos y Clientes
-- **Características**: Sticky positioning, active state con Vue Router
+## 🎨 Características Principales
 
-#### 3. FooterComponent.vue
-- **Props**: Ninguna
-- **Funcionalidad**: Pie de página con información de copyright y desarrolladores
+### 1. Sistema de Autenticación
 
-#### 4. ProductCardComponent.vue
-- **Props**: `producto` (Object)
-- **Eventos**: 
-  - `@ver-detalle` - muestra modal con información completa
-  - `@editar` - abre formulario de edición
-  - `@eliminar` - solicita confirmación y elimina
-- **Funcionalidad**: Tarjeta individual de producto con imagen, precio y acciones
+- Login con validación en MockAPI
+- Almacenamiento de sesión en localStorage
+- Token de sesión simulado
+- Protección de rutas con Navigation Guards
+- Logout con limpieza de sesión
 
-### Vistas Principales
+### 2. Gestión de Productos
 
-#### LoginView.vue
-Sistema de inicio de sesión con:
-- Formulario reactivo (v-model)
-- Validación con usuarios.json
-- Alertas de Bootstrap para errores
-- Redirección automática si ya está autenticado
+- ✅ **Listar**: Grid responsive con tarjetas
+- ✅ **Crear**: Modal con formulario completo
+- ✅ **Editar**: Modal pre-llenado con datos
+- ✅ **Eliminar**: Modal de confirmación
+- ✅ **Ver Detalle**: Modal informativo
+- ✅ **Filtros**: Por categoría, género y búsqueda
+- ✅ **Alertas**: Feedback visual de operaciones
 
-#### DashboardView.vue
-Layout principal que contiene:
-- NavbarComponent en la parte superior
-- SidebarComponent en lateral izquierdo
-- `<router-view>` para vistas hijas
-- FooterComponent en la parte inferior
-- Verificación de autenticación en mounted()
+### 3. Gestión de Usuarios
 
-#### DashboardHome.vue
-Página de inicio del dashboard con:
-- Tarjetas de estadísticas (total productos, categorías, géneros)
-- Información de bienvenida
-- Carga dinámica del total de productos
+- ✅ **Listar**: Tabla responsive con información
+- ✅ **Crear**: Modal con validación
+- ✅ **Editar**: Modal con datos pre-cargados
+- ✅ **Eliminar**: Modal de confirmación
+- ✅ **Filtros**: Por rol y búsqueda
+- ✅ **Badges**: Visualización de roles
 
-#### ProductView.vue
-Gestión completa de productos:
-- **Listado**: Grid responsivo con ProductCardComponent
-- **Filtros**: Por categoría, género y búsqueda por nombre
-- **Crear**: Modal con formulario completo
-- **Editar**: Precarga datos en modal
-- **Eliminar**: Confirmación antes de eliminar
-- **Ver Detalle**: Modal con información ampliada
+### 4. Interfaz de Usuario
 
-## 🌐 Consumo de API Externa
+- 📱 **Responsive**: Adaptable a todos los dispositivos
+- 🎨 **Bootstrap 5.3**: Diseño moderno y consistente
+- 🔔 **Alertas**: Feedback inmediato de acciones
+- 🪟 **Modales**: Interacción fluida sin cambiar de página
+- 🎯 **Iconos**: Bootstrap Icons para mejor UX
+- ⚡ **Loading States**: Spinners durante operaciones
 
-### Configuración Dual: Local / FakeStore API
+## 🔧 Scripts Disponibles
 
-El proyecto está configurado para trabajar con **dos modos**:
+```bash
+# Desarrollo
+npm run dev          # Inicia servidor de desarrollo
 
-#### 1. **Modo Local** (Por defecto - `USE_LOCAL_API = true`)
-Utiliza el archivo `public/productos.json` con los 46 productos de la tienda Tropical Rebelde.
+# Build
+npm run build        # Genera build de producción
+npm run preview      # Previsualiza build de producción
 
-#### 2. **Modo FakeStore API** (`USE_LOCAL_API = false`)
-Consume la API pública de FakeStore: https://fakestoreapi.com
-
-### Cambiar entre APIs
-
-Edita `src/services/api.js` y cambia la constante:
-
-```javascript
-const USE_LOCAL_API = true;  // true = JSON local, false = FakeStore API
+# Migración
+node scripts/crear-usuarios-iniciales.js   # Crea usuarios en MockAPI
+node scripts/migrar-productos.js           # Migra productos a MockAPI
 ```
 
-### Archivo: `src/services/api.js`
+## 📡 API Endpoints
 
-El servicio implementa todas las operaciones CRUD con ambas APIs:
+### Productos
 
-#### **GET - Listar productos**
-```javascript
-// Local: GET /productos.json
-// FakeStore: GET https://fakestoreapi.com/products
-const productos = await obtenerProductos();
-```
+- `GET /products` - Listar todos los productos
+- `GET /products/:id` - Obtener un producto
+- `POST /products` - Crear producto
+- `PUT /products/:id` - Actualizar producto
+- `DELETE /products/:id` - Eliminar producto
 
-#### **POST - Crear producto**
-```javascript
-// Local: Simulado en caché
-// FakeStore: POST https://fakestoreapi.com/products
-const nuevo = await crearProducto({ 
-  nombre: 'Oversize Negro', 
-  precio: 45000,
-  categoria: 'Oversize',
-  genero: 'Hombre',
-  imagen: '/img/Hombre/oversize1.png',
-  descripcion: 'Camiseta oversize'
-});
-```
+### Usuarios
 
-#### **PUT - Actualizar producto**
-```javascript
-// Local: Simulado en caché
-// FakeStore: PUT https://fakestoreapi.com/products/1
-await actualizarProducto(1, { 
-  nombre: 'Oversize Editado',
-  precio: 50000
-});
-```
+- `GET /users` - Listar todos los usuarios
+- `GET /users/:id` - Obtener un usuario
+- `POST /users` - Crear usuario
+- `PUT /users/:id` - Actualizar usuario
+- `DELETE /users/:id` - Eliminar usuario
 
-#### **DELETE - Eliminar producto**
-```javascript
-// Local: Simulado en caché
-// FakeStore: DELETE https://fakestoreapi.com/products/1
-await eliminarProducto(1);
-```
+## 🎓 Cumplimiento de Requerimientos
 
-### Ejemplo de uso desde ProductView.vue
+### Requerimientos Funcionales ✅
 
-```javascript
-import { 
-  obtenerProductos, 
-  crearProducto, 
-  actualizarProducto, 
-  eliminarProducto 
-} from '../services/api';
+1. ✅ **Autenticación**: Login con MockAPI, manejo de sesiones
+2. ✅ **CRUD Productos**: Todas las operaciones implementadas
+3. ✅ **CRUD Usuarios**: Todas las operaciones implementadas
+4. ✅ **Modales**: Bootstrap modals para crear, editar, eliminar
+5. ✅ **Alertas**: Sistema de alertas con tipos (success, danger, info)
+6. ✅ **Rutas Protegidas**: Navigation guards implementados
+7. ✅ **MockAPI**: Integración completa como BD externa
 
-export default {
-  methods: {
-    async cargarProductos() {
-      this.productos = await obtenerProductos();
-    },
-    async guardarProducto() {
-      if (this.modoEdicion) {
-        await actualizarProducto(this.productoForm.id, this.productoForm);
-      } else {
-        await crearProducto(this.productoForm);
-      }
-      await this.cargarProductos();
-    }
-  }
-}
-```
+### Requerimientos Técnicos ✅
 
-### Notas Importantes
+1. ✅ **Vue.js 3**: Composition API y reactivity
+2. ✅ **Bootstrap 5.3**: Grid, modales, alertas, formularios
+3. ✅ **Vue Router**: Navegación y guards
+4. ✅ **Axios**: Cliente HTTP
+5. ✅ **Vite**: Build tool
+6. ✅ **Componentes**: Modularización correcta
+7. ✅ **Services**: Capa de abstracción de API
 
-**FakeStore API:**
-- ✅ Endpoints reales funcionando
-- ⚠️ Las operaciones POST, PUT, DELETE son **simuladas** (no persisten en el servidor)
-- ⚠️ Los datos devueltos tienen estructura diferente (title, price, category, image, description)
-- 📊 Retorna ~20 productos de ejemplo
+### Requerimientos de Diseño ✅
 
-**API Local (productos.json):**
-- ✅ 46 productos específicos de Tropical Rebelde
-- ✅ Estructura personalizada (nombre, precio, categoria, genero, imagen, descripcion)
-- ✅ Imágenes locales disponibles
-- ⚠️ Cambios no persisten al recargar (solo en memoria durante la sesión)
+1. ✅ **Responsive**: Mobile-first approach
+2. ✅ **Branding**: Logo e identidad "Tropical Rebelde"
+3. ✅ **UX**: Feedback visual, loading states
+4. ✅ **Iconografía**: Bootstrap Icons consistente
+5. ✅ **Formularios**: Validación HTML5
+6. ✅ **Tablas**: Responsive y estilizadas
 
-### En Producción
+## 🐛 Troubleshooting
 
-Para un sistema real, deberías:
-1. Crear un backend con Node.js/Express o similar
-2. Usar una base de datos (MySQL, MongoDB, PostgreSQL)
-3. Implementar autenticación JWT
-4. Subir imágenes a un servidor o servicio cloud (Cloudinary, AWS S3)
+### Problema: Los datos no se cargan
 
-## 🎨 Diseño y Estilos
+- Verifica que MockAPI esté configurado correctamente
+- Ejecuta los scripts de migración
+- Revisa la consola del navegador para errores
 
-### Paleta de Colores
+### Problema: Login no funciona
 
-- **Primario**: Degradado púrpura (#667eea - #764ba2)
-- **Secundario**: Gris oscuro (#343a40)
-- **Fondo**: Gris claro (#f8f9fa)
-- **Acentos**: Bootstrap primary, success, info, danger
+- Asegúrate de haber ejecutado `crear-usuarios-iniciales.js`
+- Verifica que el endpoint `/users` existe en MockAPI
+- Revisa que las credenciales sean correctas
 
-### Características Visuales
+### Problema: Error 404 en las imágenes
 
-- **Responsivo**: Grid system de Bootstrap
-- **Animaciones**: Transiciones en hover (transform, box-shadow)
-- **Iconografía**: Bootstrap Icons en todos los componentes
-- **Sombras**: Efecto de profundidad en cards y modals
-- **Tipografía**: Sans-serif system fonts
+- Verifica que las carpetas `img/Hombre` e `img/Mujer` existan
+- Asegúrate de que las imágenes estén en `public/img/`
 
-## 🔄 Comunicación entre Componentes
+## 📝 Notas Importantes
 
-### Ejemplo 1: Props (Padre → Hijo)
+- **Límite de MockAPI**: Plan gratuito tiene 1000 requests/hora
+- **Datos de Prueba**: Los datos iniciales son solo para desarrollo
+- **Sesión**: Se mantiene en localStorage (no es producción-ready)
+- **Imágenes**: Deben estar en `public/img/` para ser accesibles
 
-```vue
-<!-- DashboardView.vue (padre) -->
-<NavbarComponent 
-  :usuario="usuario" 
-  :show-logout="true"
-/>
+## 📚 Documentación Adicional
 
-<!-- NavbarComponent.vue (hijo) -->
-<script>
-export default {
-  props: {
-    usuario: String,
-    showLogout: Boolean
-  }
-}
-</script>
-```
-
-### Ejemplo 2: Eventos (Hijo → Padre)
-
-```vue
-<!-- ProductCardComponent.vue (hijo) -->
-<button @click="$emit('eliminar', producto.id)">Eliminar</button>
-
-<!-- ProductView.vue (padre) -->
-<ProductCardComponent 
-  @eliminar="confirmarEliminar"
-/>
-
-<script>
-methods: {
-  confirmarEliminar(id) {
-    // Lógica de eliminación
-  }
-}
-</script>
-```
-
-## 🛣️ Enrutamiento con Vue Router
-
-### Configuración de Rutas
-
-```javascript
-// src/router/index.js
-const routes = [
-  { path: '/', redirect: '/login' },
-  { path: '/login', component: LoginView },
-  {
-    path: '/dashboard',
-    component: DashboardView,
-    meta: { requiresAuth: true },
-    children: [
-      { path: '', component: DashboardHome },
-      { path: 'productos', component: ProductView },
-      { path: 'clientes', component: ClientesView }
-    ]
-  }
-];
-```
-
-### Guard de Navegación
-
-```javascript
-router.beforeEach((to, from, next) => {
-  const usuario = localStorage.getItem('usuario');
-  
-  if (to.meta.requiresAuth && !usuario) {
-    next('/login');  // Redirige a login si no está autenticado
-  } else {
-    next();
-  }
-});
-```
-
-## 📦 Gestión de Datos
-
-### Datos (productos.json)
-
-Cada producto contiene:
-```json
-{
-  "id": 1,
-  "nombre": "Oversize Clásico Negro",
-  "categoria": "Oversize",
-  "genero": "Hombre",
-  "precio": 45000,
-  "imagen": "/img/Hombre/oversize1.png",
-  "descripcion": "Camiseta oversize de algodón 100%"
-}
-```
-
-**Total de productos**: 46 productos completos
-- **Hombre**: 10 Oversize + 10 Pantalones + 10 Sacos + 8 Tenis = 38 productos
-- **Mujer**: 9 Oversize + 9 Pantalones + 10 Sacos + 1 Tenis = 29 productos  
-**Categorías**: Oversize, Pantalón, Saco, Tenis
-
-### Usuarios (usuarios.json)
-
-```json
-{
-  "id": 1,
-  "usuario": "admin",
-  "password": "admin123",
-  "nombre": "Administrador"
-}
-```
-
-## 🔨 Buenas Prácticas Implementadas
-
-1. **Componentización**: Separación lógica de UI en componentes reutilizables
-2. **Organización de archivos**: Estructura clara por tipo (components, views, services)
-3. **Nomenclatura**: PascalCase para componentes, camelCase para métodos
-4. **Reactividad**: Uso correcto de data(), computed y methods
-5. **Props y eventos**: Comunicación unidireccional de datos
-6. **Servicios**: Lógica de API separada de componentes
-7. **Guards**: Protección de rutas con autenticación
-8. **Estilos scoped**: CSS aislado por componente
-
-## 🎯 Funcionalidades Implementadas
-
-✅ Sistema de login con validación  
-✅ Dashboard con estadísticas  
-✅ CRUD completo de productos  
-✅ Filtros avanzados (categoría, género, búsqueda)  
-✅ Modales para crear/editar/ver detalle  
-✅ Componentes reutilizables con props y eventos  
-✅ Ruteo con Vue Router y rutas anidadas  
-✅ Guards de navegación  
-✅ Diseño responsivo con Bootstrap  
-✅ Persistencia en localStorage para sesión  
-
-## 📸 Características Destacadas
-
-- **Diseño moderno**: Interfaz limpia con degradados y animaciones
-- **UX intuitiva**: Navegación clara y feedback visual
-- **Código limpio**: Comentarios y estructura organizada
-- **Responsive**: Funciona en móviles, tablets y desktop
-- **Iconografía**: Íconos en todos los botones y secciones
-
-## 🚧 Limitaciones y Mejoras Futuras
-
-### Limitaciones Actuales
-
-- Autenticación solo educativa (no segura para producción)
-- Datos en memoria (se pierden al recargar)
-- Sin backend real
-- Sin validación de imágenes rotas
-
-### Mejoras Sugeridas
-
-- Implementar backend con Node.js/Express
-- Base de datos MySQL o MongoDB
-- Autenticación con JWT
-- Upload de imágenes
-- Paginación en listados
-- Carrito de compras
-- Sistema de ventas
-
-## 📚 Referencias Utilizadas
-
-- [Vue.js 3 Documentation](https://vuejs.org/)
+- [Vue.js Documentation](https://vuejs.org/)
+- [Bootstrap Documentation](https://getbootstrap.com/)
 - [Vue Router Documentation](https://router.vuejs.org/)
-- [Bootstrap 5.3 Documentation](https://getbootstrap.com/)
-- [Bootstrap Icons](https://icons.getbootstrap.com/)
+- [MockAPI Documentation](https://mockapi.io/docs)
 - [Axios Documentation](https://axios-http.com/)
 
-## 📝 Notas del Desarrollo
+## 📄 Licencia
 
-Este proyecto fue desarrollado como parte del segundo parcial de Desarrollo de Aplicaciones Web. Se enfocó en demostrar competencias en:
+Este proyecto es con fines académicos para el segundo parcial de la asignatura.
 
-- Modularización de aplicaciones Vue.js
-- Componentización y reutilización de código
-- Consumo de APIs (simuladas)
-- Diseño responsivo con Bootstrap
-- Buenas prácticas de desarrollo
+## 🤝 Contribuciones
+
+Este proyecto es parte de una evaluación académica.
 
 ---
 
+**Tropical Rebelde** - Oversize que rompe reglas 🔥
+
 **Desarrollado por:**
+
 - Harol Camilo Melo Torrado (192471)
 - Jhorman Esneider Ascanio Tarazona (192534)
-
-**Universidad**: UFPSO  
-**Fecha**: Noviembre 2025  
-**Repositorio**: https://github.com/HarolTorrado73/segundoParcial

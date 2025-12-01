@@ -1,14 +1,10 @@
 <template>
   <div class="dashboard-container d-flex flex-column min-vh-100">
-    <NavbarComponent 
-      :usuario="usuario" 
-      :show-logout="true"
-      @logout="cerrarSesion"
-    />
-    
+    <NavbarComponent :usuario="usuario" :show-logout="true" @logout="cerrarSesion" />
+
     <div class="d-flex flex-grow-1">
       <SidebarComponent />
-      
+
       <main class="flex-grow-1 p-4 bg-light">
         <router-view />
       </main>
@@ -36,17 +32,18 @@ export default {
     };
   },
   mounted() {
-    const usuarioData = localStorage.getItem('usuario');
-    if (usuarioData) {
-      const user = JSON.parse(usuarioData);
-      this.usuario = user.nombre;
+    const sesionData = localStorage.getItem('sesion');
+    if (sesionData) {
+      const sesion = JSON.parse(sesionData);
+      this.usuario = sesion.nombre;
     } else {
       this.$router.push('/login');
     }
   },
   methods: {
     cerrarSesion() {
-      localStorage.removeItem('usuario');
+      localStorage.removeItem('sesion');
+      localStorage.removeItem('token');
       this.$router.push('/login');
     }
   }

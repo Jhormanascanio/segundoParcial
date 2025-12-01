@@ -4,6 +4,7 @@ import DashboardView from '../views/DashboardView.vue';
 import DashboardHome from '../views/DashboardHome.vue';
 import ProductView from '../views/ProductView.vue';
 import ClientesView from '../views/ClientesView.vue';
+import UsuariosView from '../views/UsuariosView.vue';
 
 const routes = [
   {
@@ -31,6 +32,11 @@ const routes = [
         component: ProductView
       },
       {
+        path: 'usuarios',
+        name: 'Usuarios',
+        component: UsuariosView
+      },
+      {
         path: 'clientes',
         name: 'Clientes',
         component: ClientesView
@@ -46,11 +52,11 @@ const router = createRouter({
 
 // Guard de navegación para proteger rutas
 router.beforeEach((to, from, next) => {
-  const usuario = localStorage.getItem('usuario');
+  const sesion = localStorage.getItem('sesion');
   
-  if (to.meta.requiresAuth && !usuario) {
+  if (to.meta.requiresAuth && !sesion) {
     next('/login');
-  } else if (to.path === '/login' && usuario) {
+  } else if (to.path === '/login' && sesion) {
     next('/dashboard');
   } else {
     next();

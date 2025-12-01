@@ -19,13 +19,8 @@
             <label class="form-label">Usuario</label>
             <div class="input-group">
               <span class="input-group-text"><i class="bi bi-person"></i></span>
-              <input 
-                v-model="credenciales.usuario" 
-                type="text" 
-                class="form-control" 
-                placeholder="Ingresa tu usuario"
-                required
-              >
+              <input v-model="credenciales.usuario" type="text" class="form-control" placeholder="Ingresa tu usuario"
+                required>
             </div>
           </div>
 
@@ -33,19 +28,15 @@
             <label class="form-label">Contraseña</label>
             <div class="input-group">
               <span class="input-group-text"><i class="bi bi-lock"></i></span>
-              <input 
-                v-model="credenciales.password" 
-                type="password" 
-                class="form-control" 
-                placeholder="Ingresa tu contraseña"
-                required
-              >
+              <input v-model="credenciales.password" type="password" class="form-control"
+                placeholder="Ingresa tu contraseña" required>
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">
-            <i class="bi bi-box-arrow-in-right me-2"></i>
-            Iniciar Sesión
+          <button type="submit" class="btn btn-primary w-100 py-2 fw-bold" :disabled="cargando">
+            <span v-if="cargando" class="spinner-border spinner-border-sm me-2"></span>
+            <i v-else class="bi bi-box-arrow-in-right me-2"></i>
+            {{ cargando ? 'Validando...' : 'Iniciar Sesión' }}
           </button>
         </form>
 
@@ -63,7 +54,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { validarCredenciales } from '../services/mockapi';
 
 export default {
   name: 'LoginView',
@@ -73,29 +64,46 @@ export default {
         usuario: '',
         password: ''
       },
-      error: null
+      error: null,
+      cargando: false
     };
   },
   methods: {
     async iniciarSesion() {
       try {
         this.error = null;
-        const response = await axios.get('/usuarios.json');
-        const usuarios = response.data;
+        this.cargando = true;
 
-        const usuarioEncontrado = usuarios.find(
-          u => u.usuario === this.credenciales.usuario && u.password === this.credenciales.password
+        // Validar credenciales contra MockAPI
+        const usuario = await validarCredenciales(
+          this.credenciales.usuario,
+          this.credenciales.password
         );
 
-        if (usuarioEncontrado) {
-          localStorage.setItem('usuario', JSON.stringify(usuarioEncontrado));
+        if (usuario) {
+          // Guardar sesión con token simulado
+          const sesion = {
+            id: usuario.id,
+            nombre: usuario.nombre,
+            username: usuario.username,
+            email: usuario.email,
+            rol: usuario.rol,
+            token: `token_${usuario.id}_${Date.now()}` // Token simulado
+          };
+
+          localStorage.setItem('sesion', JSON.stringify(sesion));
+          localStorage.setItem('token', sesion.token);
+          
+          console.log('✅ Sesión iniciada:', sesion);
           this.$router.push('/dashboard');
         } else {
           this.error = 'Usuario o contraseña incorrectos';
         }
       } catch (err) {
-        this.error = 'Error al intentar iniciar sesión';
-        console.error(err);
+        this.error = 'Error al intentar iniciar sesión. Verifica tu conexión.';
+        console.error('❌ Error en login:', err);
+      } finally {
+        this.cargando = false;
       }
     }
   }

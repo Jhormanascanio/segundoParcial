@@ -1,5 +1,18 @@
 <template>
   <div>
+    <!-- Alerta -->
+    <div v-if="alerta.mostrar" :class="['alert', `alert-${alerta.tipo}`, 'alert-dismissible', 'fade', 'show']"
+      role="alert">
+      <i class="bi me-2" :class="{
+        'bi-check-circle-fill': alerta.tipo === 'success',
+        'bi-exclamation-triangle-fill': alerta.tipo === 'warning',
+        'bi-x-circle-fill': alerta.tipo === 'danger',
+        'bi-info-circle-fill': alerta.tipo === 'info'
+      }"></i>
+      {{ alerta.mensaje }}
+      <button type="button" class="btn-close" @click="cerrarAlerta"></button>
+    </div>
+
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h2>
         <i class="bi bi-bag-fill me-2"></i>
@@ -46,21 +59,51 @@
       <i class="bi bi-info-circle me-2"></i>
       Mostrando {{ productosFiltrados.length }} de {{ productos.length }} productos
     </div>
-    
+
     <div v-if="productosFiltrados.length > 0" class="row g-4">
       <div v-for="producto in productosFiltrados" :key="producto.id" class="col-md-4">
-        <ProductCardComponent 
-          :producto="producto"
-          @ver-detalle="verDetalle"
-          @editar="editarProducto"
-          @eliminar="confirmarEliminar"
-        />
+        <ProductCardComponent :producto="producto" @ver-detalle="verDetalle" @editar="editarProducto"
+          @eliminar="confirmarEliminar" />
       </div>
     </div>
 
     <div v-else class="alert alert-info">
       <i class="bi bi-info-circle me-2"></i>
       No se encontraron productos con los filtros aplicados
+    </div>
+
+    <!-- Modal Eliminar -->
+    <div v-if="mostrarModalEliminar" class="modal fade show d-block" tabindex="-1"
+      style="background-color: rgba(0,0,0,0.5)">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title">
+              <i class="bi bi-exclamation-triangle-fill me-2"></i>
+              Confirmar Eliminación
+            </h5>
+            <button type="button" class="btn-close btn-close-white" @click="mostrarModalEliminar = false"></button>
+          </div>
+          <div class="modal-body">
+            <p class="mb-0">¿Estás seguro de que deseas eliminar este producto?</p>
+            <div v-if="productoAEliminar" class="mt-3 p-3 bg-light rounded">
+              <strong>{{ productoAEliminar.nombre }}</strong><br>
+              <small class="text-muted">Esta acción no se puede deshacer</small>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" @click="mostrarModalEliminar = false" :disabled="cargando">
+              <i class="bi bi-x-circle me-2"></i>
+              Cancelar
+            </button>
+            <button type="button" class="btn btn-danger" @click="eliminarProductoConfirmado" :disabled="cargando">
+              <span v-if="cargando" class="spinner-border spinner-border-sm me-2"></span>
+              <i v-else class="bi bi-trash-fill me-2"></i>
+              {{ cargando ? 'Eliminando...' : 'Eliminar' }}
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Modal Crear/Editar -->
@@ -124,7 +167,8 @@
     </div>
 
     <!-- Modal Detalle -->
-    <div v-if="mostrarModalDetalle" class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.5)">
+    <div v-if="mostrarModalDetalle" class="modal fade show d-block" tabindex="-1"
+      style="background-color: rgba(0,0,0,0.5)">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -142,7 +186,8 @@
                 <hr>
                 <p><strong>Categoría:</strong> {{ productoDetalle.categoria }}</p>
                 <p><strong>Género:</strong> {{ productoDetalle.genero }}</p>
-                <p><strong>Precio:</strong> <span class="text-primary fs-4">${{ productoDetalle.precio.toLocaleString('es-CO') }}</span></p>
+                <p><strong>Precio:</strong> <span class="text-primary fs-4">${{
+                    productoDetalle.precio.toLocaleString('es-CO') }}</span></p>
               </div>
             </div>
           </div>
@@ -154,7 +199,7 @@
 
 <script>
 import ProductCardComponent from '../components/ProductCardComponent.vue';
-import { obtenerProductos, crearProducto, actualizarProducto, eliminarProducto } from '../services/api';
+import { obtenerProductos, crearProducto, actualizarProducto, eliminarProducto } from '../services/mockapi';
 
 export default {
   name: 'ProductView',
@@ -171,6 +216,7 @@ export default {
       },
       mostrarModal: false,
       mostrarModalDetalle: false,
+      mostrarModalEliminar: false,
       modoEdicion: false,
       productoForm: {
         id: null,
@@ -181,7 +227,14 @@ export default {
         imagen: '',
         descripcion: ''
       },
-      productoDetalle: null
+      productoDetalle: null,
+      productoAEliminar: null,
+      alerta: {
+        mostrar: false,
+        tipo: '',
+        mensaje: ''
+      },
+      cargando: false
     };
   },
   computed: {
@@ -189,7 +242,7 @@ export default {
       return this.productos.filter(p => {
         const matchCategoria = !this.filtros.categoria || p.categoria === this.filtros.categoria;
         const matchGenero = !this.filtros.genero || p.genero === this.filtros.genero;
-        const matchBusqueda = !this.filtros.busqueda || 
+        const matchBusqueda = !this.filtros.busqueda ||
           p.nombre.toLowerCase().includes(this.filtros.busqueda.toLowerCase());
         return matchCategoria && matchGenero && matchBusqueda;
       });
@@ -201,10 +254,14 @@ export default {
   methods: {
     async cargarProductos() {
       try {
+        this.cargando = true;
         this.productos = await obtenerProductos();
         console.log('Total productos cargados en componente:', this.productos.length);
       } catch (error) {
         console.error('Error al cargar productos:', error);
+        this.mostrarAlerta('danger', 'Error al cargar los productos');
+      } finally {
+        this.cargando = false;
       }
     },
     mostrarModalCrear() {
@@ -227,28 +284,40 @@ export default {
     },
     async guardarProducto() {
       try {
+        this.cargando = true;
         if (this.modoEdicion) {
           await actualizarProducto(this.productoForm.id, this.productoForm);
+          this.mostrarAlerta('success', 'Producto actualizado exitosamente');
         } else {
           await crearProducto(this.productoForm);
+          this.mostrarAlerta('success', 'Producto creado exitosamente');
         }
         await this.cargarProductos();
         this.cerrarModal();
-        alert('Producto guardado exitosamente');
       } catch (error) {
         console.error('Error al guardar producto:', error);
-        alert('Error al guardar el producto');
+        this.mostrarAlerta('danger', 'Error al guardar el producto');
+      } finally {
+        this.cargando = false;
       }
     },
-    async confirmarEliminar(id) {
-      if (confirm('¿Estás seguro de eliminar este producto?')) {
-        try {
-          await eliminarProducto(id);
-          await this.cargarProductos();
-          alert('Producto eliminado exitosamente');
-        } catch (error) {
-          console.error('Error al eliminar producto:', error);
-        }
+    confirmarEliminar(producto) {
+      this.productoAEliminar = producto;
+      this.mostrarModalEliminar = true;
+    },
+    async eliminarProductoConfirmado() {
+      try {
+        this.cargando = true;
+        await eliminarProducto(this.productoAEliminar.id);
+        await this.cargarProductos();
+        this.mostrarModalEliminar = false;
+        this.productoAEliminar = null;
+        this.mostrarAlerta('success', 'Producto eliminado exitosamente');
+      } catch (error) {
+        console.error('Error al eliminar producto:', error);
+        this.mostrarAlerta('danger', 'Error al eliminar el producto');
+      } finally {
+        this.cargando = false;
       }
     },
     verDetalle(producto) {
@@ -257,6 +326,21 @@ export default {
     },
     cerrarModal() {
       this.mostrarModal = false;
+    },
+    mostrarAlerta(tipo, mensaje) {
+      this.alerta = {
+        mostrar: true,
+        tipo: tipo,
+        mensaje: mensaje
+      };
+
+      // Auto-ocultar después de 5 segundos
+      setTimeout(() => {
+        this.alerta.mostrar = false;
+      }, 5000);
+    },
+    cerrarAlerta() {
+      this.alerta.mostrar = false;
     }
   }
 }

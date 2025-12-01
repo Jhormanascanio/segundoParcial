@@ -11,6 +11,12 @@
         </router-link>
       </li>
       <li class="nav-item mb-2">
+        <router-link to="/dashboard/usuarios" class="nav-link text-white" active-class="active">
+          <i class="bi bi-people-fill me-2"></i>
+          Usuarios
+        </router-link>
+      </li>
+      <li class="nav-item mb-2">
         <router-link to="/dashboard/productos" class="nav-link text-white" active-class="active">
           <i class="bi bi-bag-fill me-2"></i>
           Productos
@@ -18,7 +24,7 @@
       </li>
       <li class="nav-item mb-2">
         <router-link to="/dashboard/clientes" class="nav-link text-white" active-class="active">
-          <i class="bi bi-people-fill me-2"></i>
+          <i class="bi bi-person-badge-fill me-2"></i>
           Clientes
         </router-link>
       </li>

@@ -41,7 +41,7 @@ export default {
       this.$emit('editar', this.producto);
     },
     eliminar() {
-      this.$emit('eliminar', this.producto.id);
+      this.$emit('eliminar', this.producto);
     }
   }
 }

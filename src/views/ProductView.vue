@@ -255,8 +255,14 @@ export default {
     async cargarProductos() {
       try {
         this.cargando = true;
-        this.productos = await obtenerProductos();
+        const productosRaw = await obtenerProductos();
+        // Mapear el id correctamente si MockAPI lo devuelve en otro campo
+        this.productos = productosRaw.map(p => ({
+          ...p,
+          id: p.id || p.nombre // Usar id si existe, sino el campo que MockAPI usa como id
+        }));
         console.log('Total productos cargados en componente:', this.productos.length);
+        console.log('Primer producto:', this.productos[0]);
       } catch (error) {
         console.error('Error al cargar productos:', error);
         this.mostrarAlerta('danger', 'Error al cargar los productos');
@@ -278,8 +284,10 @@ export default {
       this.mostrarModal = true;
     },
     editarProducto(producto) {
+      console.log('Editando producto:', producto);
+      const productId = producto.id || producto.nombre;
       this.modoEdicion = true;
-      this.productoForm = { ...producto };
+      this.productoForm = { ...producto, id: productId };
       this.mostrarModal = true;
     },
     async guardarProducto() {
@@ -302,12 +310,17 @@ export default {
       }
     },
     confirmarEliminar(producto) {
-      this.productoAEliminar = producto;
+      console.log('Confirmando eliminar producto completo:', JSON.stringify(producto, null, 2));
+      console.log('Campos del producto:', Object.keys(producto));
+      const productId = producto.id || producto.nombre;
+      console.log('ID que se usará:', productId);
+      this.productoAEliminar = { ...producto, id: productId };
       this.mostrarModalEliminar = true;
     },
     async eliminarProductoConfirmado() {
       try {
         this.cargando = true;
+        console.log('Eliminando producto con ID:', this.productoAEliminar.id);
         await eliminarProducto(this.productoAEliminar.id);
         await this.cargarProductos();
         this.mostrarModalEliminar = false;
@@ -315,7 +328,7 @@ export default {
         this.mostrarAlerta('success', 'Producto eliminado exitosamente');
       } catch (error) {
         console.error('Error al eliminar producto:', error);
-        this.mostrarAlerta('danger', 'Error al eliminar el producto');
+        this.mostrarAlerta('danger', 'Error al eliminar el producto: ' + (error.message || 'Error desconocido'));
       } finally {
         this.cargando = false;
       }

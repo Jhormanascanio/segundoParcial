@@ -248,7 +248,14 @@ export default {
         async cargarUsuarios() {
             try {
                 this.cargando = true;
-                this.usuarios = await obtenerUsuarios();
+                const usuariosRaw = await obtenerUsuarios();
+                // Mapear el id correctamente si MockAPI lo devuelve en otro campo
+                this.usuarios = usuariosRaw.map(u => ({
+                    ...u,
+                    id: u.id || u.nombre // Usar id si existe, sino el campo nombre que MockAPI usa como id
+                }));
+                console.log('Usuarios cargados:', this.usuarios);
+                console.log('Primer usuario:', this.usuarios[0]);
             } catch (error) {
                 console.error('Error al cargar usuarios:', error);
                 this.mostrarAlerta('danger', 'Error al cargar los usuarios');
@@ -269,17 +276,27 @@ export default {
             this.mostrarModal = true;
         },
         editarUsuario(usuario) {
+            console.log('Editando usuario:', usuario);
+            // Intentar obtener el id de diferentes campos
+            const userId = usuario.id || usuario.nombre;
+            if (!usuario || !userId) {
+                this.mostrarAlerta('danger', 'Error: Usuario sin ID');
+                return;
+            }
             this.modoEdicion = true;
-            this.usuarioForm = { ...usuario };
+            // Asegurar que el formulario tenga el id correcto
+            this.usuarioForm = { ...usuario, id: userId };
             this.mostrarModal = true;
         },
         async guardarUsuario() {
             try {
                 this.cargando = true;
                 if (this.modoEdicion) {
+                    console.log('Actualizando usuario con ID:', this.usuarioForm.id);
                     await actualizarUsuario(this.usuarioForm.id, this.usuarioForm);
                     this.mostrarAlerta('success', 'Usuario actualizado exitosamente');
                 } else {
+                    console.log('Creando nuevo usuario');
                     await crearUsuario(this.usuarioForm);
                     this.mostrarAlerta('success', 'Usuario creado exitosamente');
                 }
@@ -287,18 +304,27 @@ export default {
                 this.cerrarModal();
             } catch (error) {
                 console.error('Error al guardar usuario:', error);
-                this.mostrarAlerta('danger', 'Error al guardar el usuario');
+                this.mostrarAlerta('danger', 'Error al guardar el usuario: ' + (error.message || 'Error desconocido'));
             } finally {
                 this.cargando = false;
             }
         },
         confirmarEliminar(usuario) {
-            this.usuarioAEliminar = usuario;
+            console.log('Eliminando usuario:', usuario);
+            // Intentar obtener el id de diferentes campos
+            const userId = usuario.id || usuario.nombre;
+            if (!usuario || !userId) {
+                this.mostrarAlerta('danger', 'Error: Usuario sin ID');
+                return;
+            }
+            // Asegurar que el usuario tenga el id correcto
+            this.usuarioAEliminar = { ...usuario, id: userId };
             this.mostrarModalEliminar = true;
         },
         async eliminarUsuarioConfirmado() {
             try {
                 this.cargando = true;
+                console.log('Eliminando usuario con ID:', this.usuarioAEliminar.id);
                 await eliminarUsuario(this.usuarioAEliminar.id);
                 await this.cargarUsuarios();
                 this.mostrarModalEliminar = false;
@@ -306,7 +332,7 @@ export default {
                 this.mostrarAlerta('success', 'Usuario eliminado exitosamente');
             } catch (error) {
                 console.error('Error al eliminar usuario:', error);
-                this.mostrarAlerta('danger', 'Error al eliminar el usuario');
+                this.mostrarAlerta('danger', 'Error al eliminar el usuario: ' + (error.message || 'Error desconocido'));
             } finally {
                 this.cargando = false;
             }

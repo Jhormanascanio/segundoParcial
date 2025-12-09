@@ -76,6 +76,25 @@
               <i class="bi bi-info-circle me-2"></i>
               Desarrollado por: Harol Camilo Melo Torrado & Jhorman Esneider Ascanio Tarazona
             </p>
+            
+            <!-- Video promocional: archivo en `public/video-tienda.mp4` -->
+            <div class="video-container mt-4">
+              <video
+                ref="promoVideo"
+                class="w-100"
+                src="/video-tienda.mp4"
+                playsinline
+                autoplay
+                loop
+                controls
+              ></video>
+
+              <div v-if="autoplayBlocked" class="video-overlay" @click="onUserPlay">
+                <button class="btn btn-primary btn-lg">
+                  Reproducir video con sonido
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -91,7 +110,8 @@ export default {
   data() {
     return {
       totalProductos: 0,
-      totalUsuarios: 0
+      totalUsuarios: 0,
+      autoplayBlocked: false
     };
   },
   async mounted() {
@@ -105,10 +125,54 @@ export default {
       this.totalUsuarios = usuarios.length || 0;
       
       console.log('📊 Dashboard actualizado - Productos:', this.totalProductos, 'Usuarios:', this.totalUsuarios);
+      // Intentar reproducir el video con sonido; algunos navegadores bloquean autoplay con audio
+      this.$nextTick(() => {
+        const vid = this.$refs.promoVideo;
+        if (vid) {
+          const playPromise = vid.play();
+          if (playPromise !== undefined) {
+            playPromise.then(() => {
+              // reproducción automática con sonido permitida
+              this.autoplayBlocked = false;
+            }).catch(() => {
+              // autoplay bloqueado por el navegador (se requiere interacción del usuario)
+              this.autoplayBlocked = true;
+            });
+          }
+        }
+      });
+      // Reanudar reproducción cuando la pestaña vuelva a entrar en foco
+      document.addEventListener('visibilitychange', this.onVisibilityChange);
     } catch (error) {
       console.error('❌ Error al cargar datos del dashboard:', error);
       this.totalProductos = 0;
       this.totalUsuarios = 0;
+    }
+  }
+  ,
+  beforeUnmount() {
+    document.removeEventListener('visibilitychange', this.onVisibilityChange);
+  },
+  methods: {
+    onUserPlay() {
+      const vid = this.$refs.promoVideo;
+      if (!vid) return;
+      vid.play().then(() => {
+        this.autoplayBlocked = false;
+      }).catch((err) => {
+        console.warn('No se pudo reproducir el video tras la interacción:', err);
+      });
+    },
+    onVisibilityChange() {
+      if (document.visibilityState === 'visible') {
+        const vid = this.$refs.promoVideo;
+        if (vid) {
+          vid.play().catch(() => {
+            // si sigue bloqueado, mostrar botón
+            this.autoplayBlocked = true;
+          });
+        }
+      }
     }
   }
 }
@@ -128,5 +192,28 @@ export default {
 
 .card:hover {
   transform: translateY(-5px);
+}
+
+.video-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.video-container video {
+  display: block;
+  max-height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.45);
+  cursor: pointer;
 }
 </style>
